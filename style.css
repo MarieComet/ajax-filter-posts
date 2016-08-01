@@ -1,0 +1,58 @@
+/* loader */
+#genre-filter {
+	padding-top: 15px;
+    border-top: 1px solid rgb(223, 244, 255);
+}
+#genre-filter a.btn.btn-large {
+	border: 1px solid rgb(41, 184, 255);
+    margin-right: 5px;
+}
+#genre-filter .btn.btn-large.selected {
+    background-color: #fdfdfd;
+    color: #29b8ff !important;
+}
+input.input-filter-work {
+    display: none;
+}
+.ajax-post-loader {
+    z-index: 999;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+}
+@-webkit-keyframes spaceboots {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+.comet-dark {
+	position: absolute;
+	left: 47%;
+	top: 140px;
+	content: url('space-comet-dark.png');
+    vertical-align: middle;
+    display: inline-block;
+    -webkit-animation-name: spaceboots;
+	-webkit-animation-duration: 2s;
+	-webkit-transform-origin:60% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	background: inherit;
+	border-color: 0px;
+}
+.comet-dark:hover {
+	-webkit-animation-duration: 0s;
+	-webkit-transform-origin:50% 50%;
+}
+.genre-filter-navigation {
+    margin: 20px 0;
+}
