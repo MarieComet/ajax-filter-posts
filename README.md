@@ -3,7 +3,7 @@ Description: Filter posts by taxonomy with ajax, css based on bootsrap but do wh
 Version:     1.1
 Author:      Marie Comet
 
-This Plugin create simple filters for any post type on your archive, blog pages...
+This Plugin create simple ajax filters for any post type on your archive, blog pages...
 You need to include this in your template :
 
 $new_posts_filter = new Ajax_Filter_Posts();
