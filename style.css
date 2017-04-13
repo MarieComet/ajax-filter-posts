@@ -1,15 +1,16 @@
 /* loader */
 #genre-filter {
 	padding-top: 15px;
-    border-top: 1px solid rgb(223, 244, 255);
+    border-top: 1px solid #12babf;
 }
 #genre-filter a.btn.btn-large {
-	border: 1px solid rgb(41, 184, 255);
+	border: 1px solid #12babf;
     margin-right: 5px;
+    cursor: pointer;
 }
 #genre-filter .btn.btn-large.selected {
-    background-color: #fdfdfd;
-    color: #29b8ff !important;
+    background-color: transparent;
+    color: #12babf !important;
 }
 input.input-filter-work {
     display: none;
@@ -52,6 +53,40 @@ input.input-filter-work {
 .comet-dark:hover {
 	-webkit-animation-duration: 0s;
 	-webkit-transform-origin:50% 50%;
+}
+.work-box img {
+    width: 100%;
+    transition: all .3s ease-in-out;
+    z-index: 0;
+    position: relative;
+}
+.work-box a:hover {
+    color: #fff;
+}
+.work-box a:hover img {
+    border-right: 0px;
+    transform: scale(1.1);
+    z-index: 999;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+}
+.work-box span {
+    background-color: #12babf;
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    text-align: center;
+    width: 60%;
+    display: none;
+    left: 20%;
+    padding: 8px 5px;
+}
+.work-box a:hover span {
+    display: block;
 }
 .genre-filter-navigation {
     margin: 20px 0;

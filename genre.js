@@ -5,17 +5,18 @@ jQuery(function($)
     var post_type = $(this).find('#post_type').val();
     var taxo = $(this).find('#taxo').val();
 
-    //Load posts on document ready
     genre_get_posts();
+
 
     //If list item is clicked, trigger input change and add css class
     $('#genre-filter a').live('click', function(){
         var input = $(this).find('input');
- 
+
         //Check if clear all was clicked
         if ( $(this).hasClass('clear-all') )
         {
-            $('#genre-filter a').removeClass('selected').find('input').prop('checked',false); //Clear settings
+            $('#genre-filter a').addClass('selected'); //Clear settings
+            $('#genre-filter a input').prop('checked', true);
             genre_get_posts(); //Load Posts
         }
         else if (input.is(':checked'))

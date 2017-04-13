@@ -8,7 +8,7 @@ Author:      Marie Comet
 class Ajax_Filter_Posts {
 
 	public function __construct(){
-		add_action('muplugins_loaded', array($this, 'init'), 2);
+		add_action('plugins_loaded', array($this, 'init'), 2);
 	}
 	public function init(){
 		//Add Ajax Actions
@@ -48,9 +48,9 @@ class Ajax_Filter_Posts {
 	            $term_id = $term->term_id;
 	            $term_name = $term->name;
 	 
-	            $filters_html .= '<a class="term_id_'.$term_id.' btn btn-large"><input type="checkbox" name="filter_genre[]" value="'.$term_id.'" class="input-filter-work">'.$term_name.'</a>';
+	            $filters_html .= '<a class="term_id_'.$term_id.' btn btn-large selected"><input type="checkbox" checked="checked" name="filter_genre[]" value="'.$term_id.'" class="input-filter-work">'.$term_name.'</a>';
 	        }
-	        $filters_html .= '<a class="clear-all btn btn-large">Tous</a>';
+	        $filters_html .= '<a class="clear-all btn btn-large selected">Tous</a>';
 	        $filters_html .= '</div><div id="genre-results" class="row row-eq-height no-gutters"></div>';
 	 
 	        return $filters_html;
@@ -64,10 +64,10 @@ class Ajax_Filter_Posts {
 	{
 		$query_data = $_GET;
 
-		$post_type = ($query_data['post_type']) ? $query_data['post_type'] : false;
-		$taxo = ($query_data['taxo']) ? $query_data['taxo'] : false;
+		$post_type = (isset($query_data['post_type'])) ? $query_data['post_type'] : false;
+		$taxo = (isset($query_data['taxo'])) ? $query_data['taxo'] : false;
 
-		$genre_terms = ($query_data['genres']) ? explode(',',$query_data['genres']) : false;
+		$genre_terms = (isset($query_data['genres'])) ? explode(',',$query_data['genres']) : false;
 
 		$tax_query = ($genre_terms) ? array( array(
 			'taxonomy' => $taxo,
@@ -75,14 +75,14 @@ class Ajax_Filter_Posts {
 			'terms' => $genre_terms
 		) ) : false;
 		
-		$search_value = ($query_data['search']) ? $query_data['search'] : false;
+		$search_value = (isset($query_data['search']) ) ? $query_data['search'] : false;
 		
 		$paged = (isset($query_data['paged']) ) ? intval($query_data['paged']) : 1;
 		
 		$book_args = array(
 			'post_type' => $post_type,
 			's' => $search_value,
-			'posts_per_page' => 8,
+			'posts_per_page' => 15,
 			'tax_query' => $tax_query,
 			'paged' => $paged
 		);
@@ -93,15 +93,10 @@ class Ajax_Filter_Posts {
 		
 		if( $book_loop->have_posts() ):
 			while( $book_loop->have_posts() ): $book_loop->the_post();
-			setup_postdata($post); ?>
-				<div class="col-xs-12 col-sm-6 col-md-3">
-	        		<div class="work-box">
-	        			<a href="<?php echo get_permalink( $post->ID ); ?>"><span><?php the_title(); ?></span>
-						<?php the_post_thumbnail( 'works-thumb' ); ?>
-						</a>
-					</div>
-		    	</div>
-			<?php endwhile; ?>
+			global $post;
+			setup_postdata($post);
+				get_template_part( 'loop-templates/content', $post_type );
+			endwhile; ?>
 			<?php
 			echo '<div class="genre-filter-navigation col-xs-12 col-sm-12 col-md-12">';
 			        $big = 999999999;
